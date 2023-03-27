@@ -1,0 +1,18 @@
+package ${packageName}.apirequest.${businessname};
+
+import cn.secmind.pam.common.core.apirequest.ApiRequest;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * 获取${functionName}请求
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class Get${ClassName}ApiRequest extends ApiRequest {
+
+    @ApiModelProperty(value = "${functionName}ID", name = "${pkColumn.javaField}", required = true)
+    private ${pkColumn.javaType} ${pkColumn.javaField};
+}

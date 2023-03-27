@@ -1,0 +1,26 @@
+package ${packageName}.apirequest.${businessname};
+
+import cn.secmind.pam.common.core.apirequest.ApiRequest;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import java.util.Date;
+
+/**
+ * 新增${functionName}请求
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class Add${ClassName}ApiRequest extends ApiRequest {
+
+#foreach ($column in $columns)
+#if(!$column.superColumn)
+#if($column.javaField != $pkColumn.javaField)
+	@ApiModelProperty(value = "$column.columnComment", name = "$column.javaField", required = true)
+	private $column.javaType $column.javaField;
+#end
+#end
+
+#end
+}

@@ -1,0 +1,26 @@
+package ${packageName}.apirequest.${businessname};
+
+import cn.secmind.pam.common.core.apirequest.PagingApiRequest;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import java.util.Date;
+
+/**
+ * ${functionName}列表请求
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class ${ClassName}ListApiRequest extends PagingApiRequest {
+
+#foreach ($column in $columns)
+#if(!$column.superColumn)
+#if($column.javaField != $pkColumn.javaField)
+   @ApiModelProperty(value = "$column.columnComment", name = "$column.javaField", required = false)
+   private $column.javaType $column.javaField;
+#end
+#end
+
+#end
+}

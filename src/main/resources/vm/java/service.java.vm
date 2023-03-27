@@ -1,0 +1,38 @@
+package ${packageName}.service;
+
+import ${packageName}.apirequest.${businessname}.*;
+import ${packageName}.apiresponse.${businessname}.*;
+
+/**
+ * ${functionName}业务层
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface I${ClassName}Service {
+    /**
+     * 查询${functionName}
+     */
+    Get${ClassName}ApiResponse get${ClassName}ById(Get${ClassName}ApiRequest apiRequest);
+
+    /**
+     * 查询${functionName}列表
+     */
+    ${ClassName}ListApiResponse select${ClassName}List(${ClassName}ListApiRequest apiRequest);
+
+    /**
+     * 新增${functionName}
+     */
+    Add${ClassName}ApiResponse add${ClassName}(Add${ClassName}ApiRequest apiRequest);
+
+    /**
+     * 修改${functionName}
+     */
+    Edit${ClassName}ApiResponse edit${ClassName}(Edit${ClassName}ApiRequest apiRequest);
+
+    /**
+     * 批量删除${functionName}
+     */
+    Remove${ClassName}ApiResponse remove${ClassName}ByIds(Remove${ClassName}ApiRequest apiRequest);
+
+}

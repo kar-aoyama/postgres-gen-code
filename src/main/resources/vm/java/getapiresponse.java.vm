@@ -1,0 +1,27 @@
+package ${packageName}.apiresponse.${businessname};
+
+import cn.secmind.pam.common.core.apiresponse.ApiResponse;
+import ${packageName}.vo.${ClassName}Vo;
+import ${packageName}.domain.${ClassName};
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+import lombok.Data;
+
+/**
+ * 获取${functionName}响应
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class Get${ClassName}ApiResponse extends ApiResponse<${ClassName}Vo> {
+    private ${ClassName}Vo rows;
+
+    public Get${ClassName}ApiResponse(${ClassName} rows) {
+        super(0, 0, 0);
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        this.rows = mapperFactory.getMapperFacade().map(rows, ${ClassName}Vo.class);
+    }
+
+}

@@ -1,0 +1,82 @@
+package ${packageName}.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.service.I${ClassName}Service;
+import ${packageName}.apirequest.${businessname}.*;
+import ${packageName}.apiresponse.${businessname}.*;
+import cn.secmind.pam.common.utils.sql.SqlUtil;
+import cn.secmind.pam.common.core.text.Convert;
+import cn.secmind.pam.common.utils.DateUtils;
+import cn.secmind.pam.common.lang.repository.id.ObjectId;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
+/**
+ * ${functionName}业务层实现
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl implements I${ClassName}Service {
+    @Autowired
+    private ${ClassName}Mapper ${className}Mapper;
+
+    /**
+     * 获取${functionName}
+     */
+    @Override
+    public Get${ClassName}ApiResponse get${ClassName}ById(Get${ClassName}ApiRequest apiRequest) {
+        return new Get${ClassName}ApiResponse(${className}Mapper.select${ClassName}ById(apiRequest.get${PkJavaField}()));
+    }
+
+    /**
+     * 查询${functionName}列表
+     */
+    @Override
+    public ${ClassName}ListApiResponse select${ClassName}List(${ClassName}ListApiRequest apiRequest) {
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        ${ClassName} ${className} = mapperFactory.getMapperFacade().map(apiRequest, ${ClassName}.class);
+        //TODO
+
+        PageInfo<${ClassName}> pageInfo = PageHelper.startPage(apiRequest.getPageNum(), apiRequest.getPageSize(), SqlUtil.escapeOrderBySql(apiRequest.getOrderBy())).doSelectPageInfo(() -> ${className}Mapper.select${ClassName}List(${className}));
+        return new ${ClassName}ListApiResponse(pageInfo);
+    }
+
+    /**
+     * 新增${functionName}
+     */
+    @Override
+    public Add${ClassName}ApiResponse add${ClassName}(Add${ClassName}ApiRequest apiRequest) {
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        ${ClassName} ${className} = mapperFactory.getMapperFacade().map(apiRequest, ${ClassName}.class);
+        //TODO
+        ${className}.set${PkJavaField}(ObjectId.get().toString());
+        return new Add${ClassName}ApiResponse(${className}Mapper.insert${ClassName}(${className}));
+    }
+
+    /**
+     * 修改${functionName}
+     */
+    @Override
+    public Edit${ClassName}ApiResponse edit${ClassName}(Edit${ClassName}ApiRequest apiRequest) {
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        ${ClassName} ${className} = mapperFactory.getMapperFacade().map(apiRequest, ${ClassName}.class);
+        //TODO
+        return new Edit${ClassName}ApiResponse(${className}Mapper.update${ClassName}(${className}));
+    }
+
+    /**
+     * 删除${functionName}
+     */
+    @Override
+    public Remove${ClassName}ApiResponse remove${ClassName}ByIds(Remove${ClassName}ApiRequest apiRequest) {
+        return new Remove${ClassName}ApiResponse(${className}Mapper.delete${ClassName}ByIds(Convert.toStrArray(apiRequest.getIds())));
+    }
+
+}

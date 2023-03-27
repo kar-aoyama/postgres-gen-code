@@ -1,0 +1,46 @@
+server:
+  port: 33117
+# 日志配置
+logging:
+  level:
+    cn.pam: debug
+    org.springframework: warn
+spring:
+  application:
+    name: gen
+  devtools:
+    restart:
+      enabled: true
+  datasource:
+    username: postgres
+    password: lzl0502
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/pam?useUnicode=true&characterEncoding=utf-8&TimeZone=Asia/Shanghai
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+
+
+# MyBatis
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: cn.wd.lzl
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+mapper:
+  # 设置 insert 和 update 中，是否判断字符串类型!=''
+  not-empty: false
+  # 主键自增回写方法,默认值MYSQL
+  identity: POSTGRESQL
+
+# PageHelper分页插件
+pagehelper:
+  #指定分页插件使用哪种方言：oracle,mysql,mariadb,sqlite,hsqldb,postgresql,db2,sqlserver,informix,h2,sqlserver2012,derby
+  helperDialect: postgresql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

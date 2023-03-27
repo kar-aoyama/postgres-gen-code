@@ -1,0 +1,30 @@
+package ${packageName}.apiresponse.${businessname};
+
+import cn.secmind.pam.common.core.apiresponse.ApiResponse;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.vo.${ClassName}Vo;
+import com.github.pagehelper.PageInfo;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * ${functionName}列表响应
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class ${ClassName}ListApiResponse extends ApiResponse {
+    private List<${ClassName}Vo> rows;
+
+    public ${ClassName}ListApiResponse(PageInfo<${ClassName}> pageInfo) {
+        super(pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize());
+        this.rows = new ArrayList<>();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        this.rows = mapperFactory.getMapperFacade().mapAsList(pageInfo.getList(), ${ClassName}Vo.class);
+    }
+}

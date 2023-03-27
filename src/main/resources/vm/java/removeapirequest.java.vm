@@ -1,0 +1,19 @@
+package ${packageName}.apirequest.${businessname};
+
+import cn.secmind.pam.common.core.apirequest.ApiRequest;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * 删除${functionName}请求
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class Remove${ClassName}ApiRequest extends ApiRequest {
+
+    @ApiModelProperty(value = "${functionName}ID串", name = "ids", required = true)
+    private String ids;
+
+}

@@ -1,0 +1,22 @@
+package ${packageName}.apiresponse.${businessname};
+
+import cn.secmind.pam.common.core.apiresponse.ApiResponse;
+import lombok.Data;
+
+/**
+ * 新增${functionName}响应
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class Add${ClassName}ApiResponse extends ApiResponse {
+
+    public Add${ClassName}ApiResponse(int changedRows) {
+        if (changedRows > 0) {
+            this.setSuccess();
+        } else {
+            this.setFail();
+        }
+    }
+}

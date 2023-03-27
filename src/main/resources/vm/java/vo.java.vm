@@ -1,0 +1,24 @@
+package ${packageName}.vo;
+
+import cn.secmind.pam.common.lang.repository.BusinessRepositoryVo;
+import cn.secmind.pam.common.lang.repository.SerialVersionUID;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
+import lombok.Data;
+
+/**
+ * ${functionName}数据
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class ${ClassName}Vo extends BusinessRepositoryVo {
+    private static final long serialVersionUID = SerialVersionUID.VERSION;
+
+#foreach ($column in $columns)
+	@ApiModelProperty(value = "$column.columnComment")
+	private $column.javaType $column.javaField;
+
+#end
+}

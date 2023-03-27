@@ -1,0 +1,88 @@
+package ${packageName}.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import cn.secmind.pam.common.log.annotation.OperLog;
+import cn.secmind.pam.common.log.enums.BusinessType;
+import cn.secmind.pam.common.auth.annotation.HasPermissions;
+import cn.secmind.pam.common.core.controller.ApiController;
+import ${packageName}.service.I${ClassName}Service;
+import ${packageName}.apirequest.${businessname}.*;
+import ${packageName}.apiresponse.${businessname}.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * ${functionName}控制层
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("/${businessName}")
+@Api(value = "${functionName}接口", basePath = "")
+public class ${ClassName}Controller extends ApiController {
+	
+	@Autowired
+	private I${ClassName}Service ${className}Service;
+	
+	/**
+	 * 获取${functionName}
+	 */
+	@PostMapping("/get")
+    @HasPermissions("${moduleName}:${businessName}:get")
+    @OperLog(title = "${functionName}", businessType = BusinessType.GET)
+    @ApiOperation(value = "获取${functionName}", notes = "")
+	public Get${ClassName}ApiResponse get(@RequestBody Get${ClassName}ApiRequest apiRequest) {
+		return ${className}Service.get${ClassName}ById(apiRequest);
+	}
+	
+	/**
+	 * 查询${functionName}列表
+	 */
+	@PostMapping("/list")
+    @HasPermissions("${moduleName}:${businessName}:list")
+    @OperLog(title = "${functionName}", businessType = BusinessType.LIST)
+    @ApiOperation(value = "${functionName}列表", notes = "")
+	public ${ClassName}ListApiResponse list(@RequestBody ${ClassName}ListApiRequest apiRequest) {
+        return ${className}Service.select${ClassName}List(apiRequest);
+	}
+
+	/**
+	 * 新增${functionName}
+	 */
+	@PostMapping("/add")
+    @HasPermissions("${moduleName}:${businessName}:add")
+    @OperLog(title = "${functionName}", businessType = BusinessType.INSERT)
+    @ApiOperation(value = "新增${functionName}", notes = "")
+	public Add${ClassName}ApiResponse add(@RequestBody Add${ClassName}ApiRequest apiRequest) {
+		return ${className}Service.add${ClassName}(apiRequest);
+	}
+
+	/**
+	 * 修改${functionName}
+	 */
+	@PostMapping("/edit")
+    @HasPermissions("${moduleName}:${businessName}:edit")
+    @OperLog(title = "${functionName}", businessType = BusinessType.UPDATE)
+    @ApiOperation(value = "修改${functionName}", notes = "")
+	public Edit${ClassName}ApiResponse edit(@RequestBody Edit${ClassName}ApiRequest apiRequest) {
+		return ${className}Service.edit${ClassName}(apiRequest);
+	}
+	
+	/**
+	 * 删除${functionName}
+	 */
+	@PostMapping("/remove")
+    @HasPermissions("${moduleName}:${businessName}:remove")
+    @OperLog(title = "${functionName}", businessType = BusinessType.DELETE)
+    @ApiOperation(value = "删除${functionName}", notes = "")
+	public Remove${ClassName}ApiResponse remove(@RequestBody Remove${ClassName}ApiRequest apiRequest) {
+		return ${className}Service.remove${ClassName}ByIds(apiRequest);
+	}
+	
+}
